@@ -13,15 +13,15 @@ def generateTable(array,fname):
     
     ##Edit class call
     global expression
-    expression = tt.ass1_1()
+    expression = tt.ass1_3_2()
     
     global lengths
-    lengths = [ len(word)+4 for word in array ]+[len(expression.string)+4]
+    lengths = [ len(word)+4 for word in array ]+[len(s)+4 for s in expression.strings]
     
-    w("  "+'  |  '.join(array+[expression.string]) + "  " + '\n')
+    w("  "+'  |  '.join(array+[s for s in expression.strings]) + "  " + '\n')
     w(":" + ':|:'.join(['-'*(i-2) for i in lengths]) + ':' + '\n')
 
-    print("  "+'  |  '.join(array+[expression.string]) + "  ")
+    print("  "+'  |  '.join(array+[s for s in expression.strings]) + "  ")
     print(":" + ':|:'.join(['-'*(i-2) for i in lengths]) + ':')    
 
     global errorArray
@@ -42,7 +42,7 @@ def binGen(binary,ct,ln):
     binGen(binary+'0',ct+1,ln)
 
 def generateRow(binary,resolved_claim,rownum):
-    binary += str(boolToNum(resolved_claim))
+    binary += ''.join([str(boolToNum(boolean)) for boolean in resolved_claim])
     output =[]
     for i in range(len(binary)):
         left = lengths[i]//2
